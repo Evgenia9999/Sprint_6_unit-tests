@@ -1,18 +1,12 @@
 import com.example.Feline;
 import com.example.Lion;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.Spy;
 import org.mockito.junit.MockitoJUnitRunner;
-
-import java.sql.SQLOutput;
 import java.util.List;
-import java.util.zip.CheckedOutputStream;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
@@ -56,11 +50,11 @@ public class LionTest {
 
 
     @Test
-    public void testFooThrowsIndexOutOfBoundsException() {
+    public void lionThrowsExceptionWhenParamIsIncorrect() {
         try {
             Lion lion = new Lion("Test");
             lion.doesHaveMane();
-            fail("expected exception was not occured.");
+            fail("expected exception was not occured");
         } catch(Exception e) {
             System.out.println("exception is here");
         }
