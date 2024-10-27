@@ -12,7 +12,7 @@ public class TestFelineParameterized {
     @Parameterized.Parameter
     public int kittenNum;
 
-    @Parameterized.Parameters
+    @Parameterized.Parameters(name = "Тестовые данные: {0} {1}")
     public static Object[][] data() {
         return new Object[][] {
                 {0},

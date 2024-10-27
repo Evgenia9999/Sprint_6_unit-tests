@@ -28,7 +28,7 @@ public class TestCatParameterized {
     @Parameterized.Parameter(1)
     public String stringInsert;
 
-    @Parameterized.Parameters
+    @Parameterized.Parameters(name = "Тестовые данные: {0} {1}")
     public static Object[][] data() {
         return new Object[][] {
                 {0, "Травоядное"},
