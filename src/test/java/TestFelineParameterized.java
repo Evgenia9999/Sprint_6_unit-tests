@@ -7,12 +7,12 @@ import org.junit.runners.Parameterized;
 @RunWith(Parameterized.class)
 public class TestFelineParameterized {
 
-    private Feline feline = new Feline();
+    private final Feline feline = new Feline();
 
     @Parameterized.Parameter
     public int kittenNum;
 
-    @Parameterized.Parameters(name = "Тестовые данные: {0} {1}")
+    @Parameterized.Parameters(name = "Тестовые данные: {0}")
     public static Object[][] data() {
         return new Object[][] {
                 {0},

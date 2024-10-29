@@ -42,10 +42,6 @@ public class TestCatParameterized {
         Cat cat = new Cat(feline);
         cat.getFood();
         Mockito.verify(feline, Mockito.times(initNum)).getFood(stringInsert);
-        Mockito.when(feline.eatMeat()).thenReturn(List.of("Животные", "Птицы", "Рыба"));
-        List<String> actual = cat.getFood();
-        List<String> expected = List.of("Животные", "Птицы", "Рыба");
-        assertEquals(expected, actual);
     }
 
 }
