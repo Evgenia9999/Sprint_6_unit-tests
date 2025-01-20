@@ -10,36 +10,17 @@ import org.mockito.Spy;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.sql.SQLOutput;
+import java.util.Arrays;
 import java.util.List;
 import java.util.zip.CheckedOutputStream;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class LionTest {
-
-    @Spy
-    Feline feline;
-
-    @Test
-    public void getFoodTest() throws Exception {
-        Lion lion = new Lion(feline);
-        lion.getFood();
-        Mockito.verify(feline, Mockito.times(1)).getFood("Хищник");
-        List<String> food = List.of("Животные", "Птицы", "Рыба");
-        Mockito.when(feline.getFood("Хищник")).thenReturn(food);
-        assertEquals(food, lion.getFood());
-    }
-
-    @Test
-    public void getKittensTest() {
-        Lion lion = new Lion(feline);
-        lion.getKittens();
-        Mockito.verify(feline, Mockito.times(1)).getKittens();
-        Mockito.when(feline.getKittens()).thenReturn(1);
-        assertEquals(1, lion.getKittens());
-    }
 
     @Test
     public void doesHaveManeSamecReturnsTrue() throws Exception {
@@ -53,8 +34,6 @@ public class LionTest {
         Assert.assertFalse(lion.doesHaveMane());
     }
 
-
-
     @Test
     public void testFooThrowsIndexOutOfBoundsException() {
         try {
@@ -66,5 +45,24 @@ public class LionTest {
         }
     }
 
+    @Test
+    public void testGetKittens() throws Exception {
 
+        Feline feline = Mockito.spy(new Feline());
+        Lion lion = new Lion("Самец");
+        lion.feline = feline;
+        int actual = lion.getKittens();
+        assertEquals(1, actual);
+    }
+
+    @Test
+    public void testGetFood() throws Exception {
+        Feline feline = Mockito.spy(new Feline());
+        Lion lion = new Lion("Самец");
+        lion.feline = feline;
+        List<String> expectedFood = Arrays.asList("Животные", "Птицы", "Рыба");
+        when(feline.getFood("Хищник")).thenReturn(expectedFood);
+        List<String> actualFood = lion.getFood();
+        assertEquals(expectedFood, actualFood);
+    }
 }
